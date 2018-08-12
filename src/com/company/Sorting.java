@@ -2,16 +2,18 @@ package com.company;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Sorting {
 
-    public void userInput()
+    public static void userInput()
     {
         Scanner scanner = new Scanner( System.in );
         System.out.println("Enter the file path: ");
         String dirPath = scanner.nextLine(); // Takes the directory path as the user input
+        ArrayList<String>input = input();
 
         File folder = new File(dirPath);
         if(folder.isDirectory())
@@ -26,17 +28,7 @@ public class Sorting {
             // Lists only files since we have applied file filter
             for(File file:fileList)
             {
-                int f=file.getName().length();
-               for(int i=0;i<file.getName().length();i++){
-                   if(i>0){
-                       String temp=file.getName();
-                       if(temp.substring(0,i).endsWith("20") || temp.substring(0,i).endsWith("19") || temp.substring(0,i).endsWith(".m")){
-                           f=i-2;
-                           break;
-                       }
-                   }
-               }
-               String temp = file.getName().substring(0,f);
+                String temp = file.getName().substring(0,index(input,file));
                 System.out.println(temp);
                 File dir = new File(dirPath +"\\"+ temp);
                 dir.mkdir();
@@ -54,5 +46,37 @@ public class Sorting {
 
 
         }
+    }
+    private ArrayList<String> input(){
+        ArrayList<String>input = new ArrayList<String>();
+        boolean flag = true;
+        Scanner scanner = new Scanner(System.in);
+        System.out.printf("Enter your file filtering : file ends with \n(it build a folder from start name of file and ends with your input):");
+        while (false) {
+        input.add(scanner.nextLine());
+            System.out.printf("for ending yor input type---> END ");
+            if(input.equals("END"))
+                flag = false;
+        }
+        return input;
+    }
+    private int index(ArrayList<String> in ,File file){
+        int f=file.getName().length();
+        for(int i=0;i<file.getName().length();i++){
+            boolean flag = false;
+            if(i>0){
+                String temp=file.getName();
+                for(int j=0;j<in.size();j++) {
+                    if (temp.substring(0, i).endsWith(in.get(j))) {
+                        f = i - 2;
+                       flag = true;
+                       break;
+                    }
+                }
+            }
+            if(flag)
+                break;
+        }
+        return f;
     }
 }
