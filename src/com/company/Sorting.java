@@ -28,8 +28,19 @@ public class Sorting {
             // Lists only files since we have applied file filter
             for(File file:fileList)
             {
-                String temp = file.getName().substring(0,index(input,file));
-                System.out.println(temp);
+                String temp1 = file.getName().substring(0,index(input,file));
+                char[]temp2 = temp1.toCharArray();
+                String temp = "";
+                for(int i=0;i<temp2.length;i++){
+                    if(i !=temp2.length-1) {//for buildinf=g dir currectly
+                        if (temp2[i] == '.' || temp2[i] == '-' || temp2[i] == '_' || temp2[i] == ')' || temp2[i] == '(' || temp2[i] == '*') {
+                            temp += ' ';
+                        } else {
+                            temp += temp2[i];
+                        }
+                    }
+                }
+                System.out.println(temp + "...............");
                 File dir = new File(dirPath +"\\"+ temp);
                 dir.mkdir();
                 File destination = new File(dir.getAbsolutePath()+"\\"+file.getName());
@@ -47,20 +58,20 @@ public class Sorting {
 
         }
     }
-    private ArrayList<String> input(){
+    private static ArrayList<String> input(){
         ArrayList<String>input = new ArrayList<String>();
         boolean flag = true;
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Enter your file filtering : file ends with \n(it build a folder from start name of file and ends with your input):");
-        while (false) {
+        while (flag) {
         input.add(scanner.nextLine());
             System.out.printf("for ending yor input type---> END ");
-            if(input.equals("END"))
+            if(input.get(input.size()-1).equals("END"))
                 flag = false;
         }
         return input;
     }
-    private int index(ArrayList<String> in ,File file){
+    private static int index(ArrayList<String> in, File file){
         int f=file.getName().length();
         for(int i=0;i<file.getName().length();i++){
             boolean flag = false;
@@ -68,7 +79,7 @@ public class Sorting {
                 String temp=file.getName();
                 for(int j=0;j<in.size();j++) {
                     if (temp.substring(0, i).endsWith(in.get(j))) {
-                        f = i - 2;
+                        f = i - in.get(j).length();
                        flag = true;
                        break;
                     }
