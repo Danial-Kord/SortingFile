@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class Sorting {
 
-    public static void userInput()
+    public static void userInput(String path,ArrayList<String> in)
     {
         Scanner scanner = new Scanner( System.in );
         System.out.println("Enter the file path: ");
-        String dirPath = scanner.nextLine(); // Takes the directory path as the user input
-        ArrayList<String>input = input();
+        String dirPath = path; // Takes the directory path as the user input
+        ArrayList<String>input = in;
 
         File folder = new File(dirPath);
         if(folder.isDirectory())
