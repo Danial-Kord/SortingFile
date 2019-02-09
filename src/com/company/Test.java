@@ -67,7 +67,7 @@ public class Test extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("new rule:");
+        jLabel3.setText("new rule");
 
 
 
@@ -96,7 +96,7 @@ public class Test extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("ویرایش");
+        jButton2.setText("edit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -123,7 +123,7 @@ public class Test extends javax.swing.JFrame {
                 new Object [][] {
                 },
                 new String [] {
-                        "ستون", "sorting rules"
+                        "number", "sorting rules"
                 }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -256,7 +256,7 @@ public class Test extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int row = jTable1.getSelectedRow();
         int column = jTable1.getSelectedColumn();
-        if(row != -1 && column != -1)
+        if(row != -1 && column == 1)
             jTable1.editCellAt(row,column);
     }
     //GEN-LAST:event_jButton2ActionPerformed
@@ -264,7 +264,7 @@ public class Test extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //to remove last informations to pait them frOM FIRST
         //SOWING information in jtable
-            ((DefaultTableModel)(jTable1.getModel())).addRow(new Object[]{jTable1.getRowCount(),jTextField2.getText()});
+            ((DefaultTableModel)(jTable1.getModel())).addRow(new Object[]{jTable1.getRowCount()+1,jTextField2.getText()});
             removeAll();
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -337,9 +337,7 @@ public class Test extends javax.swing.JFrame {
 //            }
 //            else {
 //                flag=false;
-//                Object[] options = {"ok"};
-//                JOptionPane.showOptionDialog(null, "Invalid Input :(\n Try again :)",
-//                        "Adding Failed", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+
 //            }
 //        }
 //        else {

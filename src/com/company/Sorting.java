@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
@@ -57,6 +58,9 @@ public class Sorting {
 
 
         }
+        Object[] options = {"ok"};
+        JOptionPane.showOptionDialog(null, "Successfully Finished :)",
+                "The End :)", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
     }
     private static ArrayList<String> input(){
         ArrayList<String>input = new ArrayList<String>();
